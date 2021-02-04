@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_152050) do
+ActiveRecord::Schema.define(version: 2021_02_04_154221) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "date"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2021_02_04_152050) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "doctor_id"
     t.integer "patient_id"
+    t.integer "cities_id"
+    t.index ["cities_id"], name: "index_appointments_on_cities_id"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
@@ -40,6 +42,8 @@ ActiveRecord::Schema.define(version: 2021_02_04_152050) do
     t.integer "zip_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cities_id"
+    t.index ["cities_id"], name: "index_doctors_on_cities_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -47,11 +51,16 @@ ActiveRecord::Schema.define(version: 2021_02_04_152050) do
     t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cities_id"
+    t.index ["cities_id"], name: "index_patients_on_cities_id"
   end
 
+  add_foreign_key "appointments", "cities", column: "cities_id"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
   add_foreign_key "cities", "appointments", column: "appointments_id"
   add_foreign_key "cities", "doctors", column: "doctors_id"
   add_foreign_key "cities", "patients", column: "patients_id"
+  add_foreign_key "doctors", "cities", column: "cities_id"
+  add_foreign_key "patients", "cities", column: "cities_id"
 end

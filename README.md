@@ -1,24 +1,41 @@
-# README
+# FreeDoc - Réserve ton docteur :rocket:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Le pitch
+Implementer des bases de données dans des apps avec Rails
 
-Things you may want to cover:
+-------
 
-* Ruby version
+### Telecharger le repo
 
-* System dependencies
+```
+$ git clone https://github.com/elio75006/freedoc.git
+```
 
-* Configuration
+### Installer la gem Faker et Bundle install
 
-* Database creation
+Cette application utilise la gem Faker (https://github.com/faker-ruby/faker) pour générer la seed
+```
+$ gem install faker
+```
+Ensuite 
+```
+$ bundle install
+```
+Créer la base de donnée :
+```
+$ rails db:seed
+```
 
-* Database initialization
+### Test
+```
+$ rails console
+```
+Vous pouvez faire des tests comme par exemple :
+```
+2.7.1 :001 > a = Appointment.create(doctor_id: 2, patient_id: 1)
+# Crée un rdv
+2.7.1 :001 > a.doctor
+# Renvera la ligne du docteur ayant pour id 2
+```
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
