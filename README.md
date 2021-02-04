@@ -23,7 +23,7 @@ $ bundle install
 ```
 Créer la base de donnée :
 ```
-$ rails db:seed
+$ rake db:reset db:seed
 ```
 
 ### Test
